@@ -1,0 +1,20 @@
+# CODEOWNERS
+# Each line is a file pattern followed by one or more owners.
+# Owners are automatically requested for review when someone opens
+# a pull request that modifies matching files.
+# See: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Default: all files require review from the repo owner
+*                               @Pjrich1313
+
+# CI/CD and workflow changes
+.github/                        @Pjrich1313
+
+# Source code
+src/                            @Pjrich1313
+
+# Tests
+test/                           @Pjrich1313
+
+# Database schema
+schema.sql                      @Pjrich1313

@@ -1,0 +1,40 @@
+name: Auto-update PRs with base branch
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  auto-update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Update open PRs targeting main
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const { data: pullRequests } = await github.rest.pulls.list({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              base: 'main',
+            });
+
+            for (const pr of pullRequests) {
+              try {
+                await github.rest.pulls.updateBranch({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  pull_number: pr.number,
+                });
+                core.info(`Updated PR #${pr.number}: ${pr.title}`);
+              } catch (err) {
+                core.warning(
+                  `Could not update PR #${pr.number} (${pr.title}): ${err.message}`
+                );
+              }
+            }

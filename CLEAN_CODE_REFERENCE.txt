@@ -1,0 +1,6 @@
+Clean Code Reference
+
+- Keep code true, clean, and aligned with repository rules.
+- Prefer lint-clean patterns and maintainable functions.
+- Validate changes with lint, build, and relevant tests before finalizing.
+- Apply the same clean-code discipline consistently across repositories.

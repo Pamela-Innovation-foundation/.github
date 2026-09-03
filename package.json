@@ -1,0 +1,35 @@
+{
+  "name": "d1-get-started",
+  "version": "0.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "build": "tsc --noEmit",
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev",
+    "start": "wrangler dev",
+    "test": "vitest",
+    "lint": "eslint . --ext .ts,.tsx",
+    "lint:fix": "eslint . --ext .ts,.tsx --fix",
+    "format": "prettier --write \"**/*.{ts,tsx,json,md}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,json,md}\"",
+    "cf-typegen": "wrangler types",
+    "postdeploy": "wrangler d1 execute DB --file=schema.sql --remote"
+  },
+  "devDependencies": {
+    "@cloudflare/vitest-pool-workers": "^0.12.8",
+    "@cloudflare/workers-types": "^4.20250430.0",
+    "@eslint/js": "^9.39.2",
+    "@typescript-eslint/eslint-plugin": "^8.54.0",
+    "@typescript-eslint/parser": "^8.54.0",
+    "eslint": "^9.39.2",
+    "eslint-config-prettier": "^10.1.8",
+    "prettier": "^3.8.1",
+    "typescript": "^5.5.2",
+    "typescript-eslint": "^8.54.0",
+    "vitest": "~3.0.7",
+    "wrangler": "^4.62.0"
+  }
+}

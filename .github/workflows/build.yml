@@ -1,0 +1,54 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions: read-all
+
+jobs:
+  compatibility-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          install -m 600 /dev/null "${HOME}/.netrc"
+          trap 'rm -f "${HOME}/.netrc"' EXIT
+          printf "machine github.com\nlogin x-access-token\npassword %s\n" "${GITHUB_TOKEN}" > "${HOME}/.netrc"
+          git init .
+          git remote add origin "https://github.com/${GITHUB_REPOSITORY}.git"
+          git fetch --no-tags --depth=1 origin "${GITHUB_SHA}"
+          git checkout --detach FETCH_HEAD
+
+      - name: Install Node.js 24
+        run: |
+          NODE_DIR="$(ls -d /opt/hostedtoolcache/node/24.* 2>/dev/null | sort -V | tail -n1)"
+          if [ -z "${NODE_DIR}" ]; then
+            echo "Node.js 24 is not available in the runner tool cache"
+            exit 1
+          fi
+          echo "${NODE_DIR}/x64/bin" >> "${GITHUB_PATH}"
+
+      - name: Verify Node.js version
+        run: node --version
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run build
+        run: npm run build
+
+  verify-compatibility-build:
+    runs-on: ubuntu-latest
+    needs: [compatibility-build]
+    if: always()
+
+    steps:
+      - name: Confirm compatibility-build passed
+        run: |
+          echo "${{ needs.compatibility-build.result }}"
+          test "${{ needs.compatibility-build.result }}" = "success"

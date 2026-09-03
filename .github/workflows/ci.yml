@@ -1,0 +1,70 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  quality:
+    name: Lint, Build, Format, Test
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Verify lint requirements
+        run: |
+          node -e "
+          const fs = require('fs');
+          const lock = JSON.parse(fs.readFileSync('package-lock.json', 'utf8'));
+          const reqs = fs.readFileSync('lint_requirements.txt', 'utf8').trim().split('\n');
+          let failed = false;
+          for (const req of reqs) {
+            const [name, version] = req.split('==');
+            const installed = lock.packages['node_modules/' + name]?.version;
+            if (installed !== version) {
+              console.error('Mismatch: ' + name + ' expected ' + version + ' but got ' + installed);
+              failed = true;
+            }
+          }
+          if (failed) process.exit(1);
+          console.log('All lint requirements match installed versions.');
+          "
+
+      - name: Run npm security audit
+        run: npm audit --audit-level=high
+        continue-on-error: true
+
+      - name: Run TypeScript build check
+        run: npm run build
+
+      - name: Run linter
+        run: npm run lint
+
+      - name: Check code formatting
+        run: npm run format:check
+
+      - name: Run tests
+        run: npm test
+
+      - name: Run tests with coverage
+        run: npm run test:coverage
+
+      - name: Upload coverage report
+        uses: codecov/codecov-action@0fb7174895f61a3b6b78fc075e0cd60383518dac # v5
+        with:
+          fail_ci_if_error: false
+          files: ./coverage/lcov.info
+          verbose: true

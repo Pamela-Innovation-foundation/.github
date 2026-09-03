@@ -1,0 +1,31 @@
+/**
+ * For more details on how to configure Wrangler, refer to:
+ * https://developers.cloudflare.com/workers/wrangler/configuration/
+ */
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "d1-get-started",
+	"main": "src/index.ts",
+	"compatibility_date": "2025-04-30",
+	"observability": {
+		"enabled": true
+	},
+	"d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "prod-d1-tutorial",
+      "database_id": "69ef9d9d-cc5b-4c75-ac21-98e7069e1841"
+    }
+	],
+	/**
+	 * Environment Variables
+	 * https://developers.cloudflare.com/workers/wrangler/configuration/#environment-variables
+	 */
+	"vars": {
+	  "ETH_RPC_URL": "https://cloudflare-eth.com"
+	}
+	/**
+	 * Secrets (set via: wrangler secret put <NAME>)
+	 *   API_KEY - Admin/master API key for internal access
+	 */
+}

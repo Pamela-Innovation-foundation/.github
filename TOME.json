@@ -1,0 +1,42 @@
+{
+  "spec_version": "1.0.0",
+  "id": "Pjrich1313/d1-get-started",
+  "name": "D1 Get Started",
+  "version": "0.0.0",
+  "description": "A Cloudflare Workers starter template demonstrating D1 database integration, blockchain webhook handling, and TypeScript data structure implementations. Includes AI coding-agent instructions for GitHub Copilot and Codex covering project conventions, D1 query patterns, API security, testing, and deployment.",
+  "creator": "Pjrich1313",
+  "homepage": "https://github.com/Pjrich1313/d1-get-started",
+  "repository": "https://github.com/Pjrich1313/d1-get-started",
+  "kind": "tome",
+  "tags": [
+    "cloudflare",
+    "cloudflare-workers",
+    "cloudflare-d1",
+    "typescript",
+    "d1",
+    "workers",
+    "serverless",
+    "edge-computing",
+    "starter-template"
+  ],
+  "components": [
+    {
+      "id": "AGENTS.md",
+      "kind": "config",
+      "filename": "AGENTS.md",
+      "description": "AI coding-agent instructions (Codex / AGENTS.md format) covering project setup, coding conventions, D1 database patterns, API security, testing, and deployment."
+    },
+    {
+      "id": ".github/copilot-instructions.md",
+      "kind": "config",
+      "filename": ".github/copilot-instructions.md",
+      "description": "GitHub Copilot instructions covering the full tech stack, coding conventions, D1 query patterns, response patterns, testing patterns, security best practices, and development workflow."
+    }
+  ],
+  "depends_on": [],
+  "provenance": {
+    "human_authored": true,
+    "ai_assisted": true,
+    "note": "Starter template for Cloudflare D1 and Workers with AI agent instructions authored for the d1-get-started project."
+  }
+}

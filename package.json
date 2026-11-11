@@ -2,6 +2,7 @@
   "name": "d1-get-started",
   "version": "0.0.0",
   "private": true,
+  "license": "MIT OR Apache-2.0",
   "engines": {
     "node": ">=24"
   },
@@ -20,18 +21,18 @@
     "postdeploy": "wrangler d1 execute DB --file=schema.sql --remote"
   },
   "devDependencies": {
-    "@cloudflare/vitest-pool-workers": "^0.12.8",
-    "@cloudflare/workers-types": "^4.20250430.0",
-    "@eslint/js": "^9.39.2",
-    "@typescript-eslint/eslint-plugin": "^8.54.0",
-    "@typescript-eslint/parser": "^8.54.0",
-    "@vitest/coverage-istanbul": "~3.0.9",
-    "eslint": "^9.39.2",
+    "@cloudflare/vitest-plugin": "^1.8.0",
+    "@cloudflare/workers-types": "^5.20261110.1",
+    "@eslint/js": "^10.0.1",
+    "@typescript-eslint/eslint-plugin": "^8.72.2",
+    "@typescript-eslint/parser": "^8.72.2",
+    "@vitest/coverage-istanbul": "^5.1.0",
+    "eslint": "^10.14.0",
     "eslint-config-prettier": "^10.1.8",
-    "prettier": "^3.8.1",
-    "typescript": "^5.5.2",
-    "typescript-eslint": "^8.54.0",
-    "vitest": "~3.0.7",
-    "wrangler": "^4.62.0"
+    "prettier": "^3.10.0",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.72.2",
+    "vitest": "^5.1.0",
+    "wrangler": "^4.160.1"
   }
 }

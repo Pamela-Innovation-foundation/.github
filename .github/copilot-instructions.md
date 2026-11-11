@@ -20,7 +20,7 @@
 ### Development Tools
 
 - **Build Tool**: TypeScript compiler (tsc)
-- **Testing**: Vitest with @cloudflare/vitest-pool-workers
+- **Testing**: Vitest with @cloudflare/vitest-plugin
 - **Linting**: ESLint with TypeScript ESLint plugin
 - **Formatting**: Prettier
 - **Deployment**: Wrangler CLI (v4.62.0+)

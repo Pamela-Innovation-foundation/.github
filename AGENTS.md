@@ -101,7 +101,7 @@ All routes under `/api/` are protected by an API key:
 
 ## Testing
 
-Tests live in `/test/` and use **Vitest** with the `@cloudflare/vitest-pool-workers` pool, which provides an isolated D1 instance per run.
+Tests live in `/test/` and use **Vitest** with `@cloudflare/vitest-plugin`, which provides an isolated D1 instance per run.
 
 ```typescript
 import {

@@ -130,7 +130,7 @@ export default {
         result?: TxData | null;
         error?: { message: string };
       };
-      let txData: TxData | null = null;
+      let txData: TxData | null;
       try {
         const rpcResp = await fetch(rpcUrl, {
           method: "POST",

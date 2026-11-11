@@ -186,3 +186,5 @@ These MCP servers enable AI-powered development tools to interact with the proje
 Pamela Richardson's own additions are all rights reserved. Use of those additions requires a written license signed by Pamela Richardson, with a default fee of ten percent (10%) of all revenue earned from use of the work unless a different price is agreed in writing.
 
 The generated file `worker-configuration.d.ts` stays under the Apache License, Version 2.0 notices for Cloudflare and Microsoft Corporation already embedded in that file.
+
+See NOTICE.md.

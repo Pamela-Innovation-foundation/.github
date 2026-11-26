@@ -13,10 +13,10 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: "20"
           cache: "npm"
@@ -60,7 +60,7 @@ jobs:
         run: npm run test:coverage
 
       - name: Upload coverage report
-        uses: codecov/codecov-action@0fb7174895f61a3b6b78fc075e0cd60383518dac
+        uses: codecov/codecov-action@v7
         with:
           fail_ci_if_error: false
           files: ./coverage/lcov.info
